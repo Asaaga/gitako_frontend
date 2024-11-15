@@ -18,7 +18,7 @@ const UserInfo = ({ openId, index, setOpenId, question, answer }) => {
         />
         <h2 className="text-gray-300 text-xs">
           {answer ? "answered by\n" : "posted by "}{" "}
-          <span className="text-purple-800 font-bold  md:text-sm">
+          <span className="text-green-800 font-bold  md:text-sm">
             {question
               ? question?.author?.name === currentUser?.name
                 ? question?.author?.name + " (You)"
@@ -32,7 +32,7 @@ const UserInfo = ({ openId, index, setOpenId, question, answer }) => {
         </h2>
       </div>
       <div className="posted-on mx-auto">
-        <h2 className="text-gray-300 text-xs">
+        <h2 className="text-gray-500 text-xs">
           {question
             ? moment(question?.createdAt).fromNow()
             : moment(answer?.createdAt).fromNow()}
@@ -52,7 +52,7 @@ const UserInfo = ({ openId, index, setOpenId, question, answer }) => {
           }}
         >
           <Comment />
-          <span className="text-gray-300 text-xs">
+          <span className="text-gray-400 text-xs">
             {question?.replies?.length || "No replies"}
           </span>
         </div>

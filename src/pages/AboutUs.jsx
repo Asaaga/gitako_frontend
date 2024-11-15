@@ -1,4 +1,5 @@
 import React from "react";
+import TeamCarousel from "../components/TeamCarousel";
 
 const AboutUs = () => {
   return (
@@ -93,6 +94,8 @@ const AboutUs = () => {
           </div>
         </div>
       </div>
+
+      <TeamCarousel />
     </section>
   );
 };

@@ -1,24 +1,29 @@
 import Content from "./components/Content";
-// import Navbar from "./components/Navbar";
+
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { useDispatch, useSelector } from "react-redux";
-import { Outlet, RouterProvider, createBrowserRouter } from "react-router-dom";
+import {
+  Navigate,
+  Outlet,
+  RouterProvider,
+  createBrowserRouter,
+} from "react-router-dom";
 import { io } from "socket.io-client";
 import Askquestion from "./components/Askquestion";
+import Footer from "./components/Footer";
 import Notfound from "./components/Notfound";
+import Navbar from "./components/Website/Navbar";
 import { addUsers } from "./context/onlineSlice";
+import AboutUs from "./pages/AboutUs";
 import Chat from "./pages/Chat";
+import ContactUs from "./pages/ContactUs";
 import Explore from "./pages/Explore";
+import HomePage from "./pages/HomePage";
 import Login from "./pages/Login";
 import Myanswers from "./pages/Myanswers";
 import Register from "./pages/Register";
-
-import HomePage from "./pages/HomePage";
-import AboutUs from "./pages/AboutUs";
-import Navbar from "./components/Website/Navbar";
-import Footer from "./components/Footer";
 const queryClient = new QueryClient();
 
 export const socket = io(`http://localhost:8080`, {
@@ -26,15 +31,22 @@ export const socket = io(`http://localhost:8080`, {
   secure: true,
 });
 
+const ProtectedRoute = ({ children }) => {
+  const user = JSON.parse(localStorage.getItem("user"));
+
+  if (!user) {
+    return <Navigate to="/login" replace />;
+  }
+
+  return children;
+};
+
 const Layout = () => {
-  const [users, setUsers] = useState([]);
+  const [, setUsers] = useState([]);
   const dispatch = useDispatch();
 
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem("user"));
-    // if (!user) {
-    //   window.location.href = "/login";
-    // }
 
     socket.connect();
     socket.on("connect", () => {
@@ -43,8 +55,6 @@ const Layout = () => {
     socket.auth = user;
 
     socket.on("user-connected", (users) => {
-      console.log("users", users);
-
       dispatch(addUsers(users));
     });
 
@@ -61,68 +71,18 @@ const Layout = () => {
 
   return (
     <QueryClientProvider client={queryClient} contextSharing={true}>
-      <Navbar />
-      <Outlet />
-      <Footer />
+      <div className="flex flex-col min-h-screen">
+        <Navbar />
+        <div className="flex-grow">
+          <Outlet />
+        </div>
+        <Footer />
+      </div>
     </QueryClientProvider>
-    // <QueryClientProvider client={queryClient} contextSharing={true}>
-    //   {/* <div
-    //     className="relative w-screen flex flex-col justify-center items-center
-    //   overflow-x-hidden bg-white dark:bg-[#32353F]"
-    //   >
-    //     <Navbar />
-    //     <div
-    //       className="w-full h-screen flex justify-center items-start px-4
-    //     md:px-12 pt-12 dark:bg-[#32353F]"
-    //     >
-    //       <Sidebar />
-    //       <Outlet />
-    //       <div
-    //         className="right-section
-    //       hidden md:block
-    //       h-80 fixed z-10 top-24 right-28"
-    //       >
-    //         <CreateButton />
-    //         <div
-    //           className="mt-8  py-4 px-3 rounded-md flex
-    //      flex-col items-start gap-5"
-    //         >
-    //           <h2 className="text-gray-600 font-bold text-start">Top Users</h2>
-    //           {users.length > 0 &&
-    //             users.slice(0, 5).map((user, index) => {
-    //               console.log("user", user);
-    //               return (
-    //                 <div
-    //                   key={index}
-    //                   className="flex items-center cursor-pointer"
-    //                 >
-    //                   <img
-    //                     src={user?.profileImage}
-    //                     alt="profile"
-    //                     className="w-6 h-6 rounded-full mr-2"
-    //                   />
-    //                   <h3 className="text-xs">{user.name}</h3>
-    //                 </div>
-    //               );
-    //             })}
-    //         </div>
-    //       </div>
-    //     </div>
-    //   </div> */}
-    //   <HomePage />
-    // </QueryClientProvider>
   );
 };
 
 const router = createBrowserRouter([
-  {
-    path: "/register",
-    element: <Register />,
-  },
-  {
-    path: "/login",
-    element: <Login />,
-  },
   {
     path: "/",
     element: <Layout />,
@@ -136,12 +96,24 @@ const router = createBrowserRouter([
         element: <AboutUs />,
       },
       {
+        path: "/contact-us",
+        element: <ContactUs />,
+      },
+      {
         path: "/discuss",
         element: <Content />,
       },
       {
         path: "/ask",
         element: <Askquestion />,
+      },
+      {
+        path: "/register",
+        element: <Register />,
+      },
+      {
+        path: "/login",
+        element: <Login />,
       },
       {
         path: "/chat",
@@ -156,8 +128,12 @@ const router = createBrowserRouter([
         element: <Content />,
       },
       {
-        path: "/myqna",
-        element: <Myanswers />,
+        path: "/forum",
+        element: (
+          <ProtectedRoute>
+            <Myanswers />
+          </ProtectedRoute>
+        ),
       },
       {
         path: "*",

@@ -3,8 +3,6 @@ import React from "react";
 import toast, { Toaster } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 
-import Share from "../icons/Share";
-
 const AskQuestion = () => {
   const user = JSON.parse(localStorage.getItem("user"));
   const navigate = useNavigate();
@@ -39,11 +37,11 @@ const AskQuestion = () => {
   };
 
   return (
-    <div className="h-full md:w-[50%]">
+    <div className="h-full w-full">
       <Toaster />
-      <div className="md:mx-12 flex flex-col items-center gap-4 mb-12 border p-4 pb-6 rounded-md bg-purple-300 dark:bg-[#1E212A] mt-12">
-        <h1 className="text-2xl font-bold text-center text-purple-600">
-          Ask a Question
+      <div className="md:mx-12 flex flex-col items-center gap-4 mb-12 border p-4 pb-6 rounded-md bg-green-300 dark:bg-[#1E212A] mt-12">
+        <h1 className="text-2xl font-bold text-center text-green-600">
+          Ask your Question
         </h1>
 
         <form onSubmit={handleSubmit} className="form w-full">
@@ -82,10 +80,9 @@ const AskQuestion = () => {
           </div>
           <button
             type="submit"
-            className="mt-8 w-[230px] mx-auto flex items-center gap-2 bg-purple-700 rounded-md shadow-sm px-8 py-2 cursor-pointer"
+            className="mt-8 w-full mx-auto text-center flex items-center gap-2 bg-green-700 rounded-md shadow-sm px-8 py-2 cursor-pointer"
           >
-            <Share />
-            <span className="text-white">Ask on Community</span>
+            <span className="text-white mx-auto">Submit</span>
           </button>
         </form>
       </div>

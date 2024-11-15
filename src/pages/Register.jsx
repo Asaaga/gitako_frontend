@@ -9,7 +9,7 @@ const Register = () => {
     "https://t4.ftcdn.net/jpg/00/84/67/19/360_F_84671939_jxymoYZO8Oeacc3JRBDE8bSXBWj0ZfA9.jpg"
   );
   const navigate = useNavigate();
-  const [status, setStatus] = React.useState(null);
+  const [status] = React.useState(null);
   const [name, setName] = React.useState("");
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
@@ -75,9 +75,9 @@ const Register = () => {
       flex flex-col items-center min-h-screen pt-6 sm:justify-center sm:pt-0 "
       >
         <div>
-          <a href="/">
-            <h3 className="text-4xl font-bold dark:text-white">H-Forum</h3>
-          </a>
+          <h3 className="text-4xl text-green-700 font-[Volkhov] font-bold dark:text-white">
+            Register to Continue
+          </h3>
         </div>
         <div
           className="w-[80%] md:w-full bg-white dark:bg-[#1E212A] border rounded-md 
@@ -103,14 +103,14 @@ const Register = () => {
                 className="block text-sm font-medium 
                 text-gray-700 dark:text-white"
               >
-                Name
+                Full Name
               </label>
 
               <input
                 onChange={(e) => setName(e.target.value)}
                 type="text"
                 name="name"
-                className="border border-purple-200 mt-2 w-full h-10 px-3 rounded 
+                className="border border-green-200 mt-2 w-full h-10 px-3 rounded 
                 outline-none 
                    shadow-sm"
               />
@@ -126,7 +126,7 @@ const Register = () => {
                 onChange={(e) => setEmail(e.target.value)}
                 type="email"
                 name="email"
-                className="border border-purple-200 mt-2 w-full h-10 px-3 rounded 
+                className="border border-green-200 mt-2 w-full h-10 px-3 rounded 
                 outline-none 
                    shadow-sm"
               />
@@ -142,7 +142,7 @@ const Register = () => {
                 onChange={(e) => setPassword(e.target.value)}
                 type="password"
                 name="password"
-                className="border border-purple-200 mt-2 w-full h-10 px-3 rounded 
+                className="border border-green-200 mt-2 w-full h-10 px-3 rounded 
                 outline-none 
                    shadow-sm"
               />
@@ -158,7 +158,7 @@ const Register = () => {
                 onChange={(e) => setPassword_confirmation(e.target.value)}
                 type="password"
                 name="password_confirmation"
-                className="border border-purple-200 mt-2 w-full h-10 px-3 rounded 
+                className="border border-green-200 mt-2 w-full h-10 px-3 rounded 
                 outline-none 
                    shadow-sm"
               />
@@ -168,11 +168,11 @@ const Register = () => {
                 onClick={handleSubmit}
                 className="inline-flex items-center px-4 py-2 text-xs font-semibold 
                 tracking-widest 
-                text-white uppercase transition duration-150 ease-in-out 
-                bg-purple-950 border border-transparent rounded-md 
+                text-white  transition duration-150 ease-in-out 
+                bg-green-950 border border-transparent rounded-md 
                 active:bg-gray-900 false"
               >
-                Register
+                Submit
               </button>
               <a
                 className="text-sm text-gray-600 underline hover:text-gray-900 pt-1"

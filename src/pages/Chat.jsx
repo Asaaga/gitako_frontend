@@ -1,27 +1,8 @@
-import React, { useEffect } from "react";
-import { io } from "socket.io-client";
-import Write from "../icons/Write";
-import Send from "../icons/Send";
-import { useNavigate } from "react-router-dom";
-import _, { set } from "lodash";
 import moment from "moment";
-import { socket } from "../App";
+import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
-
-const discussionTopics = [
-  "technology",
-  "Climate",
-  "Space",
-  "Artificial intelligence",
-  "Social media",
-  "health",
-  "education",
-  "globalization",
-  "culture",
-  "Political",
-  "Sports",
-  "Public opinion",
-];
+import { socket } from "../App";
+import Write from "../icons/Write";
 
 const Chat = () => {
   const [message, setMessage] = React.useState("");
@@ -38,7 +19,7 @@ const Chat = () => {
   });
 
   const [user, setUser] = React.useState("");
-  const [room, setRoom] = React.useState("technology");
+  const [room] = React.useState("technology");
   const onlineUsers = useSelector((state) => state.online.onlineUsers);
 
   useEffect(() => {
@@ -60,7 +41,7 @@ const Chat = () => {
       });
       console.log("messages", messages);
     });
-  }, [socket]);
+  }, [messages, room]);
 
   const handleClick = () => {
     socket.emit("send-message", {

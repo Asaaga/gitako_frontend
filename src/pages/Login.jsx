@@ -19,7 +19,7 @@ const Login = () => {
       const res = await axios.post(`http://localhost:8080/login`, user);
       if (res.status === 200) {
         localStorage.setItem("user", JSON.stringify(res.data));
-        navigate("/");
+        navigate("/forum");
         toast.success("Logged in successfully");
       } else {
         toast.error("User does not exist");
@@ -36,15 +36,13 @@ const Login = () => {
         className=" flex flex-col items-center  min-h-screen pt-6 
       sm:justify-center sm:pt-0 "
       >
-        <div className="mt-12 md:mt-0">
-          <a href="/">
-            <h3 className="text-4xl font-bold text-purple-950 dark:text-white">
-              Login
-            </h3>
-          </a>
+        <div className="lg:mt-2 mt-20 md:mt-0">
+          <h3 className="text-4xl font-bold text-green-700 font-[Volkhov] dark:text-white">
+            Continue to Login
+          </h3>
         </div>
         <div
-          className="w-[90%] md:w-full bg-purple-300
+          className="w-[90%] md:w-full
           dark:bg-[#1E212A] border
           px-6 py-4 mt-6 overflow-hidden
          shadow-md sm:max-w-md rounded-lg"
@@ -54,14 +52,14 @@ const Login = () => {
               <label
                 htmlFor="email"
                 className="block text-sm font-medium 
-                text-purple-950 dark:text-white"
+                text-green-950 dark:text-white"
               >
                 Email
               </label>
               <input
                 type="email"
                 name="email"
-                className="border border-purple-200 mt-2 w-full h-10 px-3 rounded 
+                className="border border-green-200 mt-2 w-full h-10 px-3 rounded 
                     outline-none 
                        shadow-sm"
               />
@@ -70,14 +68,14 @@ const Login = () => {
               <label
                 htmlFor="password"
                 className="block text-sm 
-                font-medium text-purple-950 dark:text-white"
+                font-medium text-green-950 dark:text-white"
               >
                 Password
               </label>
               <input
                 type="password"
                 name="password"
-                className="border border-purple-200 mt-2 w-full h-10 px-3 rounded 
+                className="border border-green-200 mt-2 w-full h-10 px-3 rounded 
                     outline-none 
                        shadow-sm"
               />
@@ -89,13 +87,13 @@ const Login = () => {
                 className="inline-flex items-center px-4 py-2 text-xs font-semibold 
                 tracking-widest 
                 text-white uppercase transition duration-150 ease-in-out 
-                bg-purple-950 border border-transparent rounded-md 
+                bg-green-950 border border-transparent rounded-md 
                 active:bg-gray-900 false"
               >
                 Login
               </button>
               <a
-                className="text-sm text-gray-100 underline hover:text-gray-900 pt-2"
+                className="text-sm text-gray-900 underline hover:text-gray-900 pt-2"
                 href="/register"
               >
                 Don't have an account? Register
