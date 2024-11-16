@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/gitako_frontend/static/css/main.6c94c8f7.css",
+    "main.js": "/gitako_frontend/static/js/main.d88953fd.js",
+    "static/media/nothing.png": "/gitako_frontend/static/media/nothing.451d25032f01f88131a8.png",
+    "static/media/revicons.eot": "/gitako_frontend/static/media/revicons.a77de540a38981833f9e.eot",
+    "static/media/revicons.ttf": "/gitako_frontend/static/media/revicons.57fd05d4ae650374c8de.ttf",
+    "static/media/revicons.woff": "/gitako_frontend/static/media/revicons.e8746a624ed098489406.woff",
+    "index.html": "/gitako_frontend/index.html",
+    "main.6c94c8f7.css.map": "/gitako_frontend/static/css/main.6c94c8f7.css.map",
+    "main.d88953fd.js.map": "/gitako_frontend/static/js/main.d88953fd.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.6c94c8f7.css",
+    "static/js/main.d88953fd.js"
+  ]
+}
